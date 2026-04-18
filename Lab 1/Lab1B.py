@@ -1,0 +1,1 @@
+print ("You wrote '" + input ("Enter a line of text: ") + "'")
