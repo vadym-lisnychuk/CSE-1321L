@@ -3,25 +3,8 @@ import java.util.Scanner;
 class Lab13A{
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-
-        String[] meals = {
-            "Hummus and veggie wrap",
-            "Veggie stir fry with tofu",
-            "Chicken salad wrap",
-            "Grilled chicken with vegetables",
-
-            "Cheese quesadilla",
-            "Mac and cheese",
-            "Ham and Cheese sandwich",
-            "Pasta with meat sauce",
-
-            "Fruit and yogurt bowl",
-            "Tomato soup with bread",
-            "Yogurt with granola and honey",
-            "Egg drop soup with rice"
-        };
-
         System.out.println("[Meal Selector]");
+        
         System.out.print("How many minutes do you have to prep your meal?: ");
         int minutes = scanner.nextInt();
         scanner.nextLine(); 
@@ -33,42 +16,53 @@ class Lab13A{
         System.out.print("Vegetarian option? (true/false): ");
         String vegan = scanner.nextLine();
 
-
         boolean isVegan = (vegan.equals("true"));
-    
-
         boolean isQuick = (minutes <= 15);
 
-        System.out.println(isVegan);
         // 1 - healthy, 2 - comfort, 3 - light snack
-        int index = 0;
+        String meal = "";
         switch (mood) {
             case 1:
+                if(isVegan)
+                    if(isQuick)
+                        meal += "Hummus and veggie wrap";
+                    else
+                        meal += "Veggie stir fry with tofu";
+                else 
+                    if(isQuick)
+                        meal += "Chicken salad wrap";
+                    else
+                        meal += "Grilled chicken with vegetables";
                 break;
             case 2:
-                index += 4;
+                if(isVegan)
+                    if(isQuick)
+                        meal += "Cheese quesadilla";
+                    else
+                        meal += "Mac and cheese";
+                else 
+                    if(isQuick)
+                        meal += "Ham and Cheese sandwich";
+                    else
+                        meal += "Pasta with meat sauce";
                 break;
             case 3:
-                index += 8;
+                if(isVegan)
+                    if(isQuick)
+                        meal += "Fruit and yogurt bowl";
+                    else
+                        meal += "Tomato soup with bread";
+                else 
+                    if(isQuick)
+                        meal += "Yogurt with granola and honey";
+                    else
+                        meal += "Egg drop soup with rice";
                 break;
             default:
                 break;
+        
         }
-
-        if (isVegan){
-            if(isQuick)
-                index += 0;
-            else
-                index += 1;
-        }
-        else {
-            if(isQuick)
-                index += 2;
-            else
-                index += 3;
-        }
-
-        System.out.print("You should try " + meals[index]);
+        System.out.print("You should try " + meal);
         scanner.close();
     }
 }
